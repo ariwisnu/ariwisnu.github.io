@@ -5,184 +5,266 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>I Putu Ari Wisnu Pradana - Portfolio</title>
     
-    <!-- Tailwind CSS for styling -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
-        /* Menggunakan font Inter sebagai default */
+        /* Variabel Warna & Font Utama */
+        :root {
+            --bg-dark: #0a192f;
+            --text-light: #ccd6f6;
+            --text-slate: #8892b0;
+            --accent-color: #64ffda;
+            --card-bg: #112240;
+        }
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #0f172a; /* slate-900 */
-            color: #cbd5e1; /* slate-300 */
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            /* Latar belakang dengan pola aviasi */
+            background-image: linear-gradient(rgba(10, 25, 47, 0.95), rgba(10, 25, 47, 0.95)), url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23112240' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
-        /* Efek gradasi pada teks heading */
+
+        /* Teks dengan gradasi warna aksen */
         .gradient-text {
-            background: linear-gradient(to right, #22d3ee, #a5f3fc);
+            background: linear-gradient(to right, var(--accent-color), #42a5f5);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             text-fill-color: transparent;
         }
-        /* Animasi halus untuk kartu */
+
+        /* Efek hover pada kartu */
         .card-hover {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background-color: var(--card-bg);
+            border: 1px solid #1d2d50;
         }
         .card-hover:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
+            border-color: var(--accent-color);
+        }
+
+        /* Animasi fade-in saat scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Styling untuk Timeline Pengalaman */
+        .timeline-item {
+            position: relative;
+            padding-left: 3rem;
+            padding-bottom: 2rem;
+            border-left: 2px solid #233554;
+        }
+        .timeline-item:last-child {
+            border-left: 2px solid transparent;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -9px;
+            top: 4px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: var(--bg-dark);
+            border: 2px solid var(--accent-color);
         }
     </style>
 </head>
 <body class="antialiased">
 
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-opacity-80 backdrop-blur-md border-b border-slate-800/50">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 md:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="#" class="text-xl font-bold gradient-text">AWP</a>
+                <nav class="hidden md:flex items-center space-x-8 text-sm">
+                    <a href="#about" class="text-slate-300 hover:text-cyan-300 transition-colors">Tentang</a>
+                    <a href="#experience" class="text-slate-300 hover:text-cyan-300 transition-colors">Pengalaman</a>
+                    <a href="#projects" class="text-slate-300 hover:text-cyan-300 transition-colors">Proyek</a>
+                    <a href="#skills" class="text-slate-300 hover:text-cyan-300 transition-colors">Keahlian</a>
+                </nav>
+                <a href="mailto:i.pradana@airnavindonesia.co.id" class="border border-cyan-400 text-cyan-400 hover:bg-cyan-400/10 font-medium py-2 px-4 rounded-md transition-colors text-sm">
+                    Hubungi Saya
+                </a>
+            </div>
+        </div>
+    </header>
+
     <!-- Container Utama -->
     <div class="max-w-4xl mx-auto p-4 sm:p-6 md:p-8">
 
-        <!-- Header / Bagian Atas -->
-        <header class="flex flex-col sm:flex-row justify-between sm:items-center py-6 gap-4">
-            <div>
-                <h1 class="text-2xl font-bold text-white">I Putu Ari Wisnu Pradana</h1>
-                <p class="gradient-text font-medium">Telecommunications & Network Engineer | Aviation Geek</p>
-            </div>
-            <nav class="flex items-center space-x-4">
-                <a href="https://github.com/ariwisnu" target="_blank" class="text-slate-400 hover:text-cyan-400 transition-colors" aria-label="GitHub">
-                    <i data-lucide="github"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/ariwisnu" target="_blank" class="text-slate-400 hover:text-cyan-400 transition-colors" aria-label="LinkedIn">
-                    <i data-lucide="linkedin"></i>
-                </a>
-                <a href="mailto:i.pradana@airnavindonesia.co.id" class="bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-2 px-4 rounded-lg transition-colors text-sm">
-                    Hubungi Saya
-                </a>
-            </nav>
-        </header>
+        <main class="mt-16 sm:mt-24">
 
-        <main class="mt-8">
+            <!-- Bagian Hero -->
+            <section id="hero" class="min-h-[60vh] flex flex-col justify-center reveal">
+                <p class="text-cyan-400 mb-4">Hai, nama saya</p>
+                <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold text-slate-100">
+                    I Putu Ari Wisnu P.
+                </h1>
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-400 mt-2">
+                    Saya membangun untuk aviasi dan web.
+                </h2>
+                <p class="mt-6 max-w-xl text-slate-400 leading-relaxed">
+                    Saya seorang <span class="text-cyan-400">Telecommunications & Network Engineer</span> dengan hasrat pada teknologi penerbangan dan pengembangan web. Saat ini, saya fokus memastikan sistem komunikasi aviasi berjalan andal dan aman.
+                </p>
+                <div class="mt-8 flex gap-4">
+                     <a href="https://github.com/ariwisnu" target="_blank" class="text-slate-400 hover:text-cyan-400 transition-colors" aria-label="GitHub"><i data-lucide="github" class="w-6 h-6"></i></a>
+                     <a href="https://www.linkedin.com/in/ariwisnu" target="_blank" class="text-slate-400 hover:text-cyan-400 transition-colors" aria-label="LinkedIn"><i data-lucide="linkedin" class="w-6 h-6"></i></a>
+                </div>
+            </section>
 
             <!-- Bagian "Tentang Saya" -->
-            <section id="about" class="py-12">
-                <h2 class="text-3xl font-extrabold text-white mb-4">Ringkasan</h2>
+            <section id="about" class="py-24 reveal">
+                <h2 class="text-2xl font-bold text-slate-200 mb-8 flex items-center gap-4"><span class="text-cyan-400 font-mono">01.</span> Tentang Saya</h2>
                 <p class="text-slate-400 leading-relaxed">
-                    Saya adalah seorang penggemar teknologi dengan minat kuat pada telekomunikasi, sistem komputer, dan teknologi penerbangan. Latar belakang saya dalam dukungan teknis, bantuan TI, dan rekayasa jaringan telah membekali saya dengan keahlian beragam, termasuk pemecahan masalah, pemeliharaan sistem, dan memberikan solusi yang efektif. Saya bersemangat dalam memecahkan tantangan teknis yang kompleks dan berkomitmen untuk memberikan keunggulan serta berkontribusi pada keselamatan dan efisiensi operasi penerbangan.
+                    Halo! Saya Ari, seorang penggemar teknologi yang terjun ke dunia telekomunikasi penerbangan. Perjalanan saya dimulai dari ketertarikan pada cara kerja jaringan dan sistem komunikasi yang kompleks. Latar belakang saya dalam dukungan teknis dan rekayasa jaringan telah membekali saya dengan keahlian untuk memecahkan masalah dan memastikan sistem yang krusial berjalan tanpa hambatan.
+                    <br><br>
+                    Di luar pekerjaan saya di AirNav, saya juga memiliki sertifikasi sebagai <span class="text-cyan-400">Junior Web Developer</span>. Saya senang bereksperimen dengan kode dan membangun aplikasi web kecil. Kombinasi antara dunia aviasi yang terstruktur dan dunia web yang dinamis membuat saya selalu termotivasi untuk belajar hal baru.
                 </p>
             </section>
 
-            <!-- Bagian "Pengalaman Kerja" -->
-            <section id="experience" class="py-12 border-t border-slate-800">
-                <h2 class="text-3xl font-extrabold text-white mb-8">Pengalaman Kerja</h2>
-                <div class="space-y-10">
-                    <!-- Pengalaman 1 -->
-                    <div class="flex flex-col md:flex-row gap-6">
-                        <p class="text-slate-400 font-medium md:w-1/4">Oktober 2024 - Sekarang</p>
-                        <div class="md:w-3/4">
-                            <h3 class="text-xl font-bold text-white">Telecommunications Technician</h3>
-                            <p class="text-cyan-400 mt-1">AirNav Indonesia - Sikka, NTT</p>
-                            <ul class="text-slate-400 mt-3 leading-relaxed list-disc list-inside space-y-2">
-                                <li>Melakukan pemeliharaan rutin dan mendiagnosis masalah pada peralatan telekomunikasi.</li>
-                                <li>Memasang dan mengkonfigurasi peralatan komunikasi seperti radio dan pemancar.</li>
-                                <li>Memastikan semua sistem telekomunikasi memenuhi regulasi penerbangan nasional dan internasional.</li>
-                                <li>Berkolaborasi dengan tim ATC, staf teknik, dan personel pemeliharaan.</li>
-                            </ul>
+            <!-- Bagian "Pengalaman Kerja" (Timeline) -->
+            <section id="experience" class="py-24 reveal">
+                <h2 class="text-2xl font-bold text-slate-200 mb-12 flex items-center gap-4"><span class="text-cyan-400 font-mono">02.</span> Pengalaman Kerja</h2>
+                <div>
+                    <!-- Item 1 -->
+                    <div class="timeline-item">
+                        <h3 class="text-lg font-semibold text-slate-100">Telecommunications Technician</h3>
+                        <p class="text-cyan-400 mt-1">AirNav Indonesia <span class="text-slate-500">| Sikka, NTT</span></p>
+                        <p class="text-sm text-slate-400 mt-1 mb-3 font-mono">Okt 2024 - Sekarang</p>
+                        <ul class="text-slate-400 list-disc list-inside space-y-1 text-sm">
+                            <li>Menjaga keandalan sistem komunikasi vital untuk operasi lalu lintas udara.</li>
+                            <li>Melakukan instalasi, konfigurasi, dan troubleshooting peralatan telekomunikasi.</li>
+                        </ul>
+                    </div>
+                    <!-- Item 2 -->
+                    <div class="timeline-item">
+                        <h3 class="text-lg font-semibold text-slate-100">Call Center & Technical Support</h3>
+                        <p class="text-cyan-400 mt-1">Neuviz Networks <span class="text-slate-500">| Bali</span></p>
+                        <p class="text-sm text-slate-400 mt-1 mb-3 font-mono">Jun 2022 - Okt 2024</p>
+                        <ul class="text-slate-400 list-disc list-inside space-y-1 text-sm">
+                            <li>Memberikan solusi teknis dan non-teknis kepada pelanggan.</li>
+                            <li>Memantau status jaringan dan lalu lintas internet untuk memastikan kelancaran operasi.</li>
+                        </ul>
+                    </div>
+                    <!-- Item 3 -->
+                    <div class="timeline-item">
+                        <h3 class="text-lg font-semibold text-slate-100">CNSA Technician (Job Training)</h3>
+                        <p class="text-cyan-400 mt-1">AirNav Indonesia <span class="text-slate-500">| Bali</span></p>
+                        <p class="text-sm text-slate-400 mt-1 mb-3 font-mono">Mar 2018 - Feb 2019</p>
+                        <ul class="text-slate-400 list-disc list-inside space-y-1 text-sm">
+                            <li>Mendukung relokasi dan pemeliharaan peralatan ATC, Navigasi, dan Surveillance.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Bagian "Proyek Pilihan" -->
+            <section id="projects" class="py-24 reveal">
+                <h2 class="text-2xl font-bold text-slate-200 mb-8 flex items-center gap-4"><span class="text-cyan-400 font-mono">03.</span> Proyek Pilihan</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Proyek 1 (Placeholder) -->
+                    <div class="card-hover p-6 rounded-lg flex flex-col">
+                        <div class="flex-grow">
+                            <div class="flex justify-between items-center mb-4">
+                                <i data-lucide="folder" class="text-cyan-400"></i>
+                                <a href="#" class="text-slate-400 hover:text-cyan-400"><i data-lucide="github" class="w-5 h-5"></i></a>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-100">Flight Status Checker</h3>
+                            <p class="text-slate-400 mt-2 leading-relaxed text-sm">
+                                Aplikasi web sederhana untuk melacak status penerbangan secara real-time menggunakan API publik.
+                            </p>
+                        </div>
+                        <div class="mt-4 flex flex-wrap gap-2 text-xs font-mono text-slate-400">
+                            <span>React</span><span>Node.js</span><span>AviationStack API</span>
                         </div>
                     </div>
-                    <!-- Pengalaman 2 -->
-                    <div class="flex flex-col md:flex-row gap-6">
-                        <p class="text-slate-400 font-medium md:w-1/4">Juni 2022 - Oktober 2024</p>
-                        <div class="md:w-3/4">
-                            <h3 class="text-xl font-bold text-white">Call Center and Technical Support Representative</h3>
-                            <p class="text-cyan-400 mt-1">Neuviz Networks - Kerobokan Kaja, Bali</p>
-                             <ul class="text-slate-400 mt-3 leading-relaxed list-disc list-inside space-y-2">
-                                <li>Berkomunikasi secara efektif dengan pelanggan untuk memberikan solusi optimal.</li>
-                                <li>Berkolaborasi dengan tim teknis untuk perbaikan, survei, atau instalasi baru.</li>
-                                <li>Memantau status jaringan dan lalu lintas internet klien untuk memastikan kelancaran operasi.</li>
-                            </ul>
+                    <!-- Proyek 2 (Placeholder) -->
+                    <div class="card-hover p-6 rounded-lg flex flex-col">
+                        <div class="flex-grow">
+                            <div class="flex justify-between items-center mb-4">
+                                <i data-lucide="folder" class="text-cyan-400"></i>
+                                <a href="#" class="text-slate-400 hover:text-cyan-400"><i data-lucide="github" class="w-5 h-5"></i></a>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-100">Network Monitoring Dashboard</h3>
+                            <p class="text-slate-400 mt-2 leading-relaxed text-sm">
+                                Dashboard untuk memvisualisasikan status dan performa perangkat jaringan, dibuat dengan JavaScript murni.
+                            </p>
                         </div>
-                    </div>
-                     <!-- Pengalaman 3 -->
-                    <div class="flex flex-col md:flex-row gap-6">
-                        <p class="text-slate-400 font-medium md:w-1/4">Maret 2018 - Februari 2019</p>
-                        <div class="md:w-3/4">
-                            <h3 class="text-xl font-bold text-white">CNSA Technician (Job Training)</h3>
-                            <p class="text-cyan-400 mt-1">AirNav Indonesia - Kuta, Bali</p>
-                             <ul class="text-slate-400 mt-3 leading-relaxed list-disc list-inside space-y-2">
-                                <li>Memberikan dukungan dalam proses relokasi peralatan ATC ke Tower baru.</li>
-                                <li>Memastikan fungsionalitas peralatan komunikasi, navigasi, dan pengawasan bandara.</li>
-                                <li>Melakukan pemeriksaan kinerja peralatan secara rutin dan mencatatnya dalam logbook.</li>
-                            </ul>
+                        <div class="mt-4 flex flex-wrap gap-2 text-xs font-mono text-slate-400">
+                            <span>JavaScript</span><span>Chart.js</span><span>HTML/CSS</span>
                         </div>
                     </div>
                 </div>
             </section>
 
             <!-- Bagian "Keahlian & Sertifikasi" -->
-            <section id="skills" class="py-12 border-t border-slate-800">
-                <h2 class="text-3xl font-extrabold text-white mb-8">Keahlian & Sertifikasi</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Keahlian Utama -->
-                    <div class="bg-slate-800 p-6 rounded-lg card-hover">
-                        <h3 class="text-xl font-bold text-white mb-3 flex items-center gap-3"><i data-lucide="star" class="text-cyan-400"></i> Keahlian Utama</h3>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="bg-cyan-900/50 text-cyan-300 text-sm font-medium px-3 py-1.5 rounded-full">Regulatory Compliance</span>
-                            <span class="bg-cyan-900/50 text-cyan-300 text-sm font-medium px-3 py-1.5 rounded-full">Air Traffic Control Collaboration</span>
-                            <span class="bg-cyan-900/50 text-cyan-300 text-sm font-medium px-3 py-1.5 rounded-full">Communication Systems</span>
-                        </div>
+            <section id="skills" class="py-24 reveal">
+                 <h2 class="text-2xl font-bold text-slate-200 mb-8 flex items-center gap-4"><span class="text-cyan-400 font-mono">04.</span> Keahlian & Sertifikasi</h2>
+                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                    <div class="card-hover p-4 rounded-lg">
+                        <i data-lucide="shield-check" class="mx-auto text-cyan-400 mb-2 w-8 h-8"></i>
+                        <p class="text-sm font-semibold">Regulatory Compliance</p>
                     </div>
-                    <!-- Sertifikasi -->
-                    <div class="bg-slate-800 p-6 rounded-lg card-hover">
-                        <h3 class="text-xl font-bold text-white mb-3 flex items-center gap-3"><i data-lucide="award" class="text-cyan-400"></i> Sertifikasi</h3>
-                         <div class="flex flex-wrap gap-2">
-                            <span class="bg-cyan-900/50 text-cyan-300 text-sm font-medium px-3 py-1.5 rounded-full">Junior Web Developer</span>
-                            <span class="bg-cyan-900/50 text-cyan-300 text-sm font-medium px-3 py-1.5 rounded-full">IT Support Google Specialization</span>
-                            <span class="bg-cyan-900/50 text-cyan-300 text-sm font-medium px-3 py-1.5 rounded-full">Computer Network Main Technician</span>
-                        </div>
+                     <div class="card-hover p-4 rounded-lg">
+                        <i data-lucide="tower-control" class="mx-auto text-cyan-400 mb-2 w-8 h-8"></i>
+                        <p class="text-sm font-semibold">ATC Collaboration</p>
                     </div>
-                </div>
-            </section>
-
-            <!-- Bagian "Pendidikan" -->
-            <section id="education" class="py-12 border-t border-slate-800">
-                <h2 class="text-3xl font-extrabold text-white mb-8">Pendidikan</h2>
-                <div class="space-y-8">
-                    <!-- Pendidikan 1 -->
-                    <div class="flex flex-col md:flex-row gap-6">
-                        <p class="text-slate-400 font-medium md:w-1/4">2020 - 2022</p>
-                        <div class="md:w-3/4">
-                            <h3 class="text-xl font-bold text-white">Sarjana Terapan Teknik (S.Tr.T), Teknik Telekomunikasi</h3>
-                            <p class="text-cyan-400 mt-1">Politeknik Elektronika Negeri Surabaya</p>
-                        </div>
+                     <div class="card-hover p-4 rounded-lg">
+                        <i data-lucide="radio" class="mx-auto text-cyan-400 mb-2 w-8 h-8"></i>
+                        <p class="text-sm font-semibold">Communication Systems</p>
                     </div>
-                    <!-- Pendidikan 2 -->
-                    <div class="flex flex-col md:flex-row gap-6">
-                        <p class="text-slate-400 font-medium md:w-1/4">2016 - 2019</p>
-                        <div class="md:w-3/4">
-                            <h3 class="text-xl font-bold text-white">Ahli Madya (A.Md.), Teknik Telekomunikasi dan Navigasi Udara</h3>
-                            <p class="text-cyan-400 mt-1">Akademi Teknik dan Keselamatan Penerbangan Makassar</p>
-                        </div>
+                     <div class="card-hover p-4 rounded-lg">
+                        <i data-lucide="code-2" class="mx-auto text-cyan-400 mb-2 w-8 h-8"></i>
+                        <p class="text-sm font-semibold">Web Development</p>
                     </div>
-                </div>
+                 </div>
             </section>
 
         </main>
 
         <!-- Footer -->
-        <footer class="text-center py-8 mt-12 border-t border-slate-800 text-slate-500 text-sm">
-            <p>Didesain dan dikembangkan oleh I Putu Ari Wisnu Pradana.</p>
-            <p>Dibangun dengan <a href="https://tailwindcss.com" class="hover:text-cyan-400">Tailwind CSS</a> & <a href="https://lucide.dev/" class="hover:text-cyan-400">Lucide Icons</a>.</p>
+        <footer class="text-center py-8 mt-12 text-slate-500 text-sm">
+            <p>Didesain & Dikembangkan oleh I Putu Ari Wisnu Pradana</p>
+            <a href="https://github.com/ariwisnu/ariwisnu.github.io" target="_blank" class="font-mono hover:text-cyan-400">Dibangun dengan Next.js & Tailwind CSS</a>
         </footer>
 
     </div>
 
-    <!-- Script untuk mengaktifkan ikon Lucide -->
+    <!-- Script untuk Interaktivitas -->
     <script>
+        // Inisialisasi Lucide Icons
         lucide.createIcons();
+
+        // Animasi fade-in saat scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        const revealElements = document.querySelectorAll('.reveal');
+        revealElements.forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
