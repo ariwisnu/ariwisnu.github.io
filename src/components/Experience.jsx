@@ -1,4 +1,5 @@
 import { experience } from '../data/experience.js'
+import { education } from '../data/education.js'
 import SectionHeading from './SectionHeading.jsx'
 import Reveal from './Reveal.jsx'
 import Icon from './Icons.jsx'
@@ -47,6 +48,35 @@ export default function Experience() {
                 ))}
               </ul>
             </div>
+          </Reveal>
+        ))}
+      </div>
+
+      {/* Pendidikan */}
+      <Reveal className="mb-6 mt-16 flex items-center gap-3">
+        <Icon name="navigation" className="h-4 w-4 text-phosphor" />
+        <h3 className="font-mono text-lg font-semibold text-radar-text">Pendidikan</h3>
+        <span className="h-px flex-1 bg-radar-line" />
+      </Reveal>
+      <div className="grid gap-5 sm:grid-cols-2">
+        {education.map((ed, i) => (
+          <Reveal key={ed.school} delay={i * 0.06}>
+            <article className="panel panel-hover h-full p-5">
+              <span className="readout">{ed.period}</span>
+              <h4 className="mt-2 font-semibold leading-snug text-radar-text">{ed.school}</h4>
+              <p className="mt-1 text-sm text-phosphor">{ed.degree}</p>
+              <p className="text-sm text-radar-muted">{ed.field}</p>
+              <ul className="mt-3 flex flex-wrap gap-2">
+                {ed.notes.map((n) => (
+                  <li
+                    key={n}
+                    className="rounded border border-amber/40 px-2 py-0.5 font-mono text-[11px] text-amber"
+                  >
+                    {n}
+                  </li>
+                ))}
+              </ul>
+            </article>
           </Reveal>
         ))}
       </div>

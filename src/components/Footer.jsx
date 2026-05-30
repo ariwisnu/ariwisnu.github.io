@@ -25,7 +25,7 @@ export default function Footer() {
             {profile.name}
           </p>
           <p className="font-mono text-[11px] text-radar-muted/70">
-            Dibangun dengan React · Vite · Tailwind CSS &nbsp;|&nbsp; 08°37′S 122°14′E
+            Dibangun dengan React · Vite · Tailwind CSS &nbsp;|&nbsp; WATC · 08°38′S 122°14′E
           </p>
         </div>
       </div>

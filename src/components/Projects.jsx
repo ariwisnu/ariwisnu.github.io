@@ -47,6 +47,11 @@ export default function Projects() {
                   {proj.title}
                 </a>
               </h3>
+              {proj.note && (
+                <span className="mt-2 inline-flex w-fit items-center gap-1.5 rounded border border-radar-line px-2 py-0.5 font-mono text-[11px] text-radar-muted">
+                  <span className="h-1.5 w-1.5 rounded-full bg-amber" /> {proj.note}
+                </span>
+              )}
               <p className="mt-2 flex-grow leading-relaxed text-sm text-radar-muted">{proj.desc}</p>
 
               <ul className="mt-5 flex flex-wrap gap-2">
@@ -62,13 +67,16 @@ export default function Projects() {
       </div>
 
       <Reveal delay={0.1} className="mt-8 text-center">
+        <p className="mb-3 font-mono text-xs text-radar-muted/80">
+          Repositori bersifat privat — tautan menuju hasil/demo langsung.
+        </p>
         <a
-          href="https://github.com/ariwisnu"
+          href="https://www.linkedin.com/in/ariwisnu"
           target="_blank"
           rel="noreferrer"
           className="inline-flex items-center gap-2 font-mono text-sm text-radar-muted transition-colors hover:text-phosphor"
         >
-          <Icon name="github" className="h-4 w-4" /> Lihat selengkapnya di GitHub
+          <Icon name="linkedin" className="h-4 w-4" /> Selengkapnya di LinkedIn
           <Icon name="arrowUpRight" className="h-4 w-4" />
         </a>
       </Reveal>

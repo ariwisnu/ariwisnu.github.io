@@ -1,4 +1,4 @@
-import { pillars, supportSkills } from '../data/skills.js'
+import { pillars, supportSkills, topSkills } from '../data/skills.js'
 import Icon, { pillarIcon } from './Icons.jsx'
 import SectionHeading from './SectionHeading.jsx'
 import Reveal from './Reveal.jsx'
@@ -11,6 +11,18 @@ export default function Skills() {
         title="Keahlian"
         sub="Empat pilar CNS/ATM yang menjaga lalu lintas udara tetap aman — inilah peralatan yang saya tangani."
       />
+
+      <Reveal className="mb-6 flex flex-wrap items-center gap-2">
+        <span className="readout mr-1 text-phosphor">Top skills:</span>
+        {topSkills.map((s) => (
+          <span
+            key={s}
+            className="rounded-full border border-radar-line bg-radar-panel/60 px-3 py-1 font-mono text-xs text-radar-text/90"
+          >
+            {s}
+          </span>
+        ))}
+      </Reveal>
 
       <div className="grid gap-5 sm:grid-cols-2">
         {pillars.map((p, i) => (

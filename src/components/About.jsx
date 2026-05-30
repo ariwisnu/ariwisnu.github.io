@@ -5,7 +5,8 @@ import Reveal from './Reveal.jsx'
 import Icon from './Icons.jsx'
 
 const facts = [
-  { k: 'Stasiun', v: `${profile.org}` },
+  { k: 'Stasiun', v: profile.org },
+  { k: 'Unit', v: profile.unit },
   { k: 'Lokasi', v: profile.location },
   { k: 'Bidang', v: 'CNS / ATM' },
   { k: 'Status', v: profile.status },
