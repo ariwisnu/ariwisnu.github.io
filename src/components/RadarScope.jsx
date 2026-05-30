@@ -85,11 +85,13 @@ export default function RadarScope({ className = '' }) {
       ctx.arc(c, c, R, 0, Math.PI * 2)
       ctx.clip()
       if (typeof ctx.createConicGradient === 'function') {
+        // Trail must follow BEHIND the leading line (counterclockwise of `angle`),
+        // so bright sits near offset 1.0 and fades out ahead of the line (offset 0).
         const g = ctx.createConicGradient(angle, c, c)
-        g.addColorStop(0, 'rgba(61, 243, 168, 0.55)')
-        g.addColorStop(0.08, 'rgba(61, 243, 168, 0.16)')
-        g.addColorStop(0.35, 'rgba(61, 243, 168, 0)')
-        g.addColorStop(1, 'rgba(61, 243, 168, 0)')
+        g.addColorStop(0, 'rgba(61, 243, 168, 0)')
+        g.addColorStop(0.6, 'rgba(61, 243, 168, 0)')
+        g.addColorStop(0.92, 'rgba(61, 243, 168, 0.16)')
+        g.addColorStop(1, 'rgba(61, 243, 168, 0.55)')
         ctx.fillStyle = g
         ctx.fillRect(0, 0, size, size)
       } else {
