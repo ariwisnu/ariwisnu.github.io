@@ -52,13 +52,14 @@ line('KEAHLIAN', 56, 353, 12, true)
 line('Communication : VHF A/G, Voice Recorder (VRS), Recording, HF', 56, 336, 9)
 line('Navigation    : DVOR, DME, ILS, NDB', 56, 323, 9)
 line('Surveillance  : Radar (PSR/SSR), ADS-B, MLAT', 56, 310, 9)
-line('Data Process. : ATC Automation, AMHS, Server/Jaringan', 56, 297, 9)
+line('Data Process. : ATC Automation (FDPS/RDPS), AFTN/AMHS, A-SMGCS', 56, 297, 9)
 line('IT & Web      : MikroTik, Fiber Optic, IT Support, JavaScript, React, Next.js', 56, 284, 9)
 rule(270)
 
 line('SERTIFIKASI', 56, 252, 12, true)
-line('Google IT Support Specialization - Coursera (2022)', 56, 235, 9)
-line('IT Support - Digital Talent Scholarship (2022)', 56, 222, 9)
+line('TCC Data Processing - Batch I (Rating) - AirNav x PPI Curug (2026)', 56, 235, 9)
+line('Google IT Support Specialization - Coursera (2022)', 56, 222, 9)
+line('IT Support - Digital Talent Scholarship (2022)', 56, 209, 9)
 
 line('Dokumen ini dihasilkan otomatis - ganti public/cv.pdf dengan CV final Anda.', 56, 56, 8)
 

@@ -15,7 +15,7 @@ endobj
 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
 endobj
 6 0 obj
-<< /Length 3146 >>
+<< /Length 3258 >>
 stream
 0 0 0 rg
 BT /F2 22 Tf 56 800 Td (I Putu Ari Wisnu Pradana) Tj ET
@@ -48,11 +48,12 @@ BT /F2 12 Tf 56 353 Td (KEAHLIAN) Tj ET
 BT /F1 9 Tf 56 336 Td (Communication : VHF A/G, Voice Recorder \(VRS\), Recording, HF) Tj ET
 BT /F1 9 Tf 56 323 Td (Navigation    : DVOR, DME, ILS, NDB) Tj ET
 BT /F1 9 Tf 56 310 Td (Surveillance  : Radar \(PSR/SSR\), ADS-B, MLAT) Tj ET
-BT /F1 9 Tf 56 297 Td (Data Process. : ATC Automation, AMHS, Server/Jaringan) Tj ET
+BT /F1 9 Tf 56 297 Td (Data Process. : ATC Automation \(FDPS/RDPS\), AFTN/AMHS, A-SMGCS) Tj ET
 BT /F1 9 Tf 56 284 Td (IT & Web      : MikroTik, Fiber Optic, IT Support, JavaScript, React, Next.js) Tj ET
 BT /F2 12 Tf 56 252 Td (SERTIFIKASI) Tj ET
-BT /F1 9 Tf 56 235 Td (Google IT Support Specialization - Coursera \(2022\)) Tj ET
-BT /F1 9 Tf 56 222 Td (IT Support - Digital Talent Scholarship \(2022\)) Tj ET
+BT /F1 9 Tf 56 235 Td (TCC Data Processing - Batch I \(Rating\) - AirNav x PPI Curug \(2026\)) Tj ET
+BT /F1 9 Tf 56 222 Td (Google IT Support Specialization - Coursera \(2022\)) Tj ET
+BT /F1 9 Tf 56 209 Td (IT Support - Digital Talent Scholarship \(2022\)) Tj ET
 BT /F1 8 Tf 56 56 Td (Dokumen ini dihasilkan otomatis - ganti public/cv.pdf dengan CV final Anda.) Tj ET
 0.6 w 0.55 0.6 0.58 RG
 56 741 m 539 741 l S
@@ -74,5 +75,5 @@ xref
 trailer
 << /Size 7 /Root 1 0 R >>
 startxref
-3593
+3705
 %%EOF

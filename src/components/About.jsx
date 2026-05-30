@@ -37,11 +37,16 @@ export default function About() {
               ))}
             </dl>
             <p className="readout mb-2 mt-5">Sertifikasi</p>
-            <ul className="space-y-1.5">
+            <ul className="space-y-2.5">
               {certifications.map((c) => (
-                <li key={c} className="flex items-start gap-2 text-sm text-radar-text">
-                  <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-amber" />
-                  {c}
+                <li key={c.title} className="flex items-start gap-2 text-sm">
+                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-amber" />
+                  <span>
+                    <span className="text-radar-text">{c.title}</span>
+                    <span className="block font-mono text-[11px] leading-snug text-radar-muted">
+                      {c.issuer} · {c.year}
+                    </span>
+                  </span>
                 </li>
               ))}
             </ul>

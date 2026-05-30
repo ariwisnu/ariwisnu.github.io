@@ -23,7 +23,7 @@ export const pillars = [
     code: 'D',
     title: 'Data Processing',
     desc: 'Otomasi & pesan aeronautika',
-    items: ['ATC Automation', 'AMHS', 'Server & Jaringan'],
+    items: ['ATC Automation (FDPS / RDPS)', 'AFTN / AMHS', 'A-SMGCS'],
   },
 ]
 
@@ -44,6 +44,19 @@ export const supportSkills = {
 
 // Sertifikasi (dari LinkedIn).
 export const certifications = [
-  'Google IT Support Specialization — Coursera (2022)',
-  'IT Support — Digital Talent Scholarship (2022)',
+  {
+    title: 'TCC Data Processing — Batch I (Rating)',
+    issuer: 'AirNav Indonesia × Politeknik Penerbangan Curug (PPI Curug)',
+    year: '2026',
+  },
+  {
+    title: 'Google IT Support Specialization',
+    issuer: 'Coursera',
+    year: '2022',
+  },
+  {
+    title: 'IT Support',
+    issuer: 'Digital Talent Scholarship (Kominfo)',
+    year: '2022',
+  },
 ]
