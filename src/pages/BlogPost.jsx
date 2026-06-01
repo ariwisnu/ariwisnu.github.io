@@ -26,43 +26,43 @@ export default function BlogPost() {
       <Reveal>
         <Link
           to="/blog"
-          className="mb-8 inline-flex items-center gap-1.5 font-mono text-sm text-radar-muted transition-colors hover:text-phosphor"
+          className="mb-8 inline-flex items-center gap-1.5 text-sm text-fog-muted transition-colors hover:text-sky"
         >
           <Icon name="chevronLeft" className="h-4 w-4" /> Kembali ke Logbook
         </Link>
 
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-xs text-radar-muted">
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-fog-faint">
           <time>{formatDate(post.date)}</time>
-          <span className="text-phosphor/40">·</span>
+          <span className="text-sky/40">·</span>
           <span>{post.readingTime} mnt baca</span>
         </div>
-        <h1 className="mt-3 text-3xl font-bold leading-tight text-radar-text sm:text-4xl">{post.title}</h1>
+        <h1 className="mt-3 font-display text-3xl font-bold leading-tight text-fog sm:text-4xl">{post.title}</h1>
         {post.tags.length > 0 && (
           <ul className="mt-4 flex flex-wrap gap-2">
             {post.tags.map((t) => (
-              <li key={t} className="rounded border border-radar-line px-2 py-0.5 font-mono text-xs text-phosphor/80">
+              <li key={t} className="rounded-full border border-line px-2.5 py-0.5 font-display text-xs text-sky/80">
                 #{t}
               </li>
             ))}
           </ul>
         )}
-        <hr className="my-8 border-radar-line" />
+        <hr className="my-8 border-line" />
       </Reveal>
 
       <Reveal delay={0.05}>
-        <div className="prose-radar">
+        <div className="prose-night">
           <ReactMarkdown remarkPlugins={[remarkGfm]}>{post.body}</ReactMarkdown>
         </div>
       </Reveal>
 
-      <hr className="my-10 border-radar-line" />
+      <hr className="my-10 border-line" />
       <div className="flex items-center justify-between">
-        <Link to="/blog" className="font-mono text-sm text-radar-muted hover:text-phosphor">
+        <Link to="/blog" className="text-sm text-fog-muted transition-colors hover:text-sky">
           ← Semua tulisan
         </Link>
         <a
           href={`mailto:${profile.email}`}
-          className="font-mono text-sm text-radar-muted hover:text-phosphor"
+          className="text-sm text-fog-muted transition-colors hover:text-sky"
         >
           Diskusi via email →
         </a>

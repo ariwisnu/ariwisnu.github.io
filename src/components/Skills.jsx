@@ -7,18 +7,15 @@ export default function Skills() {
   return (
     <section id="skills" className="mx-auto max-w-5xl scroll-mt-24 px-4 py-20 sm:px-6 md:px-8">
       <SectionHeading
-        index="// 03"
+        index="03"
         title="Keahlian"
         sub="Empat pilar CNS/ATM yang menjaga lalu lintas udara tetap aman — inilah peralatan yang saya tangani."
       />
 
       <Reveal className="mb-6 flex flex-wrap items-center gap-2">
-        <span className="readout mr-1 text-phosphor">Top skills:</span>
+        <span className="label mr-1 text-sky">Top skills</span>
         {topSkills.map((s) => (
-          <span
-            key={s}
-            className="rounded-full border border-radar-line bg-radar-panel/60 px-3 py-1 font-mono text-xs text-radar-text/90"
-          >
+          <span key={s} className="chip">
             {s}
           </span>
         ))}
@@ -27,24 +24,24 @@ export default function Skills() {
       <div className="grid gap-5 sm:grid-cols-2">
         {pillars.map((p, i) => (
           <Reveal key={p.code} delay={i * 0.06}>
-            <article className="panel panel-hover group h-full p-6">
+            <article className="card card-hover group h-full p-6">
               <div className="flex items-start gap-4">
-                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-lg border border-phosphor/40 bg-phosphor/5 font-mono text-2xl font-bold text-phosphor text-glow">
+                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl border border-sky/40 bg-sky/10 font-display text-2xl font-bold text-sky">
                   {p.code}
                 </span>
                 <div>
                   <div className="flex items-center gap-2">
-                    <Icon name={pillarIcon[p.code]} className="h-4 w-4 text-amber" />
-                    <h3 className="font-mono text-lg font-semibold text-radar-text">{p.title}</h3>
+                    <Icon name={pillarIcon[p.code]} className="h-4 w-4 text-beam" />
+                    <h3 className="font-display text-lg font-semibold text-fog">{p.title}</h3>
                   </div>
-                  <p className="mt-0.5 text-sm text-radar-muted">{p.desc}</p>
+                  <p className="mt-0.5 text-sm text-fog-muted">{p.desc}</p>
                 </div>
               </div>
               <ul className="mt-5 flex flex-wrap gap-2">
                 {p.items.map((it) => (
                   <li
                     key={it}
-                    className="rounded border border-radar-line bg-radar-bg/60 px-2.5 py-1 font-mono text-xs text-radar-text/90 transition-colors group-hover:border-phosphor/30"
+                    className="rounded-lg border border-line bg-ink-700/50 px-2.5 py-1 text-xs text-fog-muted transition-colors group-hover:border-sky/30"
                   >
                     {it}
                   </li>
@@ -56,16 +53,16 @@ export default function Skills() {
       </div>
 
       <Reveal delay={0.1} className="mt-5">
-        <div className="panel p-6">
+        <div className="card p-6">
           <div className="flex items-center gap-2">
-            <Icon name="signal" className="h-4 w-4 text-phosphor" />
-            <h3 className="font-mono text-lg font-semibold text-radar-text">{supportSkills.title}</h3>
+            <Icon name="signal" className="h-4 w-4 text-sky" />
+            <h3 className="font-display text-lg font-semibold text-fog">{supportSkills.title}</h3>
           </div>
           <ul className="mt-4 flex flex-wrap gap-2">
             {supportSkills.items.map((it) => (
               <li
                 key={it}
-                className="rounded border border-radar-line bg-radar-bg/60 px-2.5 py-1 font-mono text-xs text-radar-text/90"
+                className="rounded-lg border border-line bg-ink-700/50 px-2.5 py-1 text-xs text-fog-muted"
               >
                 {it}
               </li>

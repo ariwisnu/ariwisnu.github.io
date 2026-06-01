@@ -10,8 +10,9 @@ const BLIPS = [
   { r: 0.64, a: 1.2 },
 ]
 
-const PHOSPHOR = '#3df3a8'
-const AMBER = '#ffb000'
+const SKY = '#38bdf8'
+const SKY_BRIGHT = '#7dd3fc'
+const BEAM = '#fbbf24'
 
 export default function RadarScope({ className = '' }) {
   const canvasRef = useRef(null)
@@ -43,15 +44,15 @@ export default function RadarScope({ className = '' }) {
 
       // glass background
       const bg = ctx.createRadialGradient(c, c, 0, c, c, R)
-      bg.addColorStop(0, 'rgba(13, 40, 32, 0.9)')
-      bg.addColorStop(1, 'rgba(4, 16, 12, 0.95)')
+      bg.addColorStop(0, 'rgba(20, 29, 51, 0.95)')
+      bg.addColorStop(1, 'rgba(7, 11, 22, 0.98)')
       ctx.fillStyle = bg
       ctx.beginPath()
       ctx.arc(c, c, R, 0, Math.PI * 2)
       ctx.fill()
 
       // range rings
-      ctx.strokeStyle = 'rgba(31, 107, 77, 0.55)'
+      ctx.strokeStyle = 'rgba(56, 189, 248, 0.18)'
       ctx.lineWidth = 1
       for (let i = 1; i <= 4; i++) {
         ctx.beginPath()
@@ -60,7 +61,7 @@ export default function RadarScope({ className = '' }) {
       }
 
       // cross + diagonals
-      ctx.strokeStyle = 'rgba(31, 107, 77, 0.4)'
+      ctx.strokeStyle = 'rgba(56, 189, 248, 0.12)'
       ctx.beginPath()
       ctx.moveTo(c - R, c)
       ctx.lineTo(c + R, c)
@@ -69,7 +70,7 @@ export default function RadarScope({ className = '' }) {
       ctx.stroke()
 
       // bearing ticks every 30deg
-      ctx.strokeStyle = 'rgba(31, 107, 77, 0.7)'
+      ctx.strokeStyle = 'rgba(152, 167, 199, 0.28)'
       for (let d = 0; d < 360; d += 30) {
         const rad = (d * Math.PI) / 180
         const inner = d % 90 === 0 ? R * 0.9 : R * 0.95
@@ -79,23 +80,21 @@ export default function RadarScope({ className = '' }) {
         ctx.stroke()
       }
 
-      // sweep (conic gradient trail) — fallback to wedge if unsupported
+      // sweep (conic gradient trail) — trail follows behind the leading line
       ctx.save()
       ctx.beginPath()
       ctx.arc(c, c, R, 0, Math.PI * 2)
       ctx.clip()
       if (typeof ctx.createConicGradient === 'function') {
-        // Trail must follow BEHIND the leading line (counterclockwise of `angle`),
-        // so bright sits near offset 1.0 and fades out ahead of the line (offset 0).
         const g = ctx.createConicGradient(angle, c, c)
-        g.addColorStop(0, 'rgba(61, 243, 168, 0)')
-        g.addColorStop(0.6, 'rgba(61, 243, 168, 0)')
-        g.addColorStop(0.92, 'rgba(61, 243, 168, 0.16)')
-        g.addColorStop(1, 'rgba(61, 243, 168, 0.55)')
+        g.addColorStop(0, 'rgba(56, 189, 248, 0)')
+        g.addColorStop(0.62, 'rgba(56, 189, 248, 0)')
+        g.addColorStop(0.92, 'rgba(56, 189, 248, 0.12)')
+        g.addColorStop(1, 'rgba(56, 189, 248, 0.42)')
         ctx.fillStyle = g
         ctx.fillRect(0, 0, size, size)
       } else {
-        ctx.fillStyle = 'rgba(61, 243, 168, 0.12)'
+        ctx.fillStyle = 'rgba(56, 189, 248, 0.1)'
         ctx.beginPath()
         ctx.moveTo(c, c)
         ctx.arc(c, c, R, angle - 0.5, angle)
@@ -103,10 +102,10 @@ export default function RadarScope({ className = '' }) {
         ctx.fill()
       }
       // leading edge line
-      ctx.strokeStyle = PHOSPHOR
-      ctx.lineWidth = 1.6
-      ctx.shadowColor = PHOSPHOR
-      ctx.shadowBlur = 12
+      ctx.strokeStyle = SKY
+      ctx.lineWidth = 1.4
+      ctx.shadowColor = SKY
+      ctx.shadowBlur = 9
       ctx.beginPath()
       ctx.moveTo(c, c)
       ctx.lineTo(c + Math.cos(angle) * R, c + Math.sin(angle) * R)
@@ -119,19 +118,19 @@ export default function RadarScope({ className = '' }) {
         const y = c + Math.sin(b.a) * R * b.r
         let diff = angle - b.a
         diff = ((diff % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2)
-        const intensity = reduced ? 0.6 : Math.max(0.12, 1 - diff / (Math.PI * 1.4))
+        const intensity = reduced ? 0.6 : Math.max(0.1, 1 - diff / (Math.PI * 1.4))
         ctx.beginPath()
-        ctx.fillStyle = `rgba(134, 255, 209, ${intensity})`
-        ctx.shadowColor = PHOSPHOR
-        ctx.shadowBlur = 10 * intensity
-        ctx.arc(x, y, 2.4 + intensity * 1.6, 0, Math.PI * 2)
+        ctx.fillStyle = `rgba(125, 211, 252, ${intensity})`
+        ctx.shadowColor = SKY_BRIGHT
+        ctx.shadowBlur = 9 * intensity
+        ctx.arc(x, y, 2.2 + intensity * 1.5, 0, Math.PI * 2)
         ctx.fill()
         ctx.shadowBlur = 0
       }
 
       // center dot
       ctx.beginPath()
-      ctx.fillStyle = AMBER
+      ctx.fillStyle = BEAM
       ctx.arc(c, c, 2.2, 0, Math.PI * 2)
       ctx.fill()
     }
@@ -140,7 +139,7 @@ export default function RadarScope({ className = '' }) {
     function loop(now) {
       const dt = Math.min(0.05, (now - last) / 1000)
       last = now
-      angle += dt * 1.15 // ~5.5s per revolution
+      angle += dt * 1.0 // ~6.3s per revolution (calm)
       draw()
       raf = requestAnimationFrame(loop)
     }
@@ -168,7 +167,7 @@ export default function RadarScope({ className = '' }) {
   return (
     <div className={`relative aspect-square ${className}`}>
       <canvas ref={canvasRef} className="h-full w-full" />
-      <div className="pointer-events-none absolute inset-0 rounded-full ring-1 ring-phosphor/20" />
+      <div className="pointer-events-none absolute inset-0 rounded-full ring-1 ring-sky/15" />
     </div>
   )
 }
