@@ -6,7 +6,7 @@
   "description": "Portfolio I Putu Ari Wisnu Pradana - Teknisi Telekomunikasi Penerbangan (CNS/ATM)",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node scripts/prerender.cjs",
     "preview": "vite preview",
     "cv": "node scripts/gen-cv.cjs"
   },
